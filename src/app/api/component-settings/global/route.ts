@@ -18,7 +18,8 @@ export async function GET() {
     return NextResponse.json({ content });
   } catch (error) {
     console.error("Error fetching global settings:", error);
-    return NextResponse.json({ error: 'Failed to fetch global settings' }, { status: 500 });
+    // Return fallback content instead of 500 so clients degrade gracefully
+    return NextResponse.json({ content: { background_image: '/background.png' } });
   }
 }
 
