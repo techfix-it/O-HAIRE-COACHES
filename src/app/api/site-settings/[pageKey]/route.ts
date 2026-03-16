@@ -40,7 +40,8 @@ export async function GET(_req: NextRequest, { params }: Params) {
 
     return NextResponse.json(settings);
   } catch {
-    return NextResponse.json({ error: 'Erro ao buscar page settings' }, { status: 500 });
+    const { pageKey } = await params;
+    return NextResponse.json({ page_key: pageKey, ...(PAGE_DEFAULTS[pageKey] || {}) });
   }
 }
 

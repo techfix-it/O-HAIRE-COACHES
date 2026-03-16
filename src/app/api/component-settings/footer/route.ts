@@ -25,7 +25,18 @@ export async function GET() {
     });
   } catch (error) {
     console.error("Error fetching footer settings:", error);
-    return NextResponse.json({ error: 'Failed to fetch footer settings' }, { status: 500 });
+    return NextResponse.json({ content: {
+      companyName: "O'Haire Concert Coaches",
+      description: "Premium coach travel to Ireland's biggest events. Safe, reliable, and comfortable journeys since 2004.",
+      email: "info@ohaire-coaches.ie",
+      phone: "+353 (0) 87 900 4876",
+      address: "Roscommon, Ireland",
+      social_links: {
+        facebook: "https://facebook.com",
+        instagram: "https://instagram.com",
+        twitter: "https://twitter.com"
+      }
+    }});
   }
 }
 

@@ -39,6 +39,8 @@ export async function GET() {
     const settings = await SiteSettings.find({ page_key: { $in: pages } });
     return NextResponse.json(settings);
   } catch {
-    return NextResponse.json({ error: 'Erro ao buscar site settings' }, { status: 500 });
+    // Return defaults so pages render even when DB is unreachable
+    const fallback = Object.entries(PAGE_DEFAULTS).map(([page_key, data]) => ({ page_key, ...data }));
+    return NextResponse.json(fallback);
   }
 }

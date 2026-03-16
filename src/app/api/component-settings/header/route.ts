@@ -24,7 +24,17 @@ export async function GET() {
     });
   } catch (error) {
     console.error("Error fetching header settings:", error);
-    return NextResponse.json({ error: 'Failed to fetch header settings' }, { status: 500 });
+    return NextResponse.json({ content: {
+      logo_text: "O'HAIRE",
+      logo_accent: "COACHES",
+      nav_links: [
+        { id: 1, text: 'Home', link: '/' },
+        { id: 2, text: 'Concerts', link: '/concerts' },
+        { id: 3, text: 'Pickup Info', link: '/bus-info' },
+        { id: 4, text: 'About', link: '/about' },
+        { id: 5, text: 'Contact', link: '/contact' }
+      ]
+    }});
   }
 }
 

@@ -18,7 +18,7 @@ export async function GET() {
       .sort({ date: 1 });
     return NextResponse.json(events);
   } catch {
-    return NextResponse.json({ error: 'Erro ao buscar eventos' }, { status: 500 });
+    return NextResponse.json([]);
   }
 }
 
