@@ -1,0 +1,146 @@
+/* ──────────────────────────────────────────────
+   QuickBook bar — styled to match reference UI
+   ────────────────────────────────────────────── */
+
+.quick-book-bar {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto 3rem;
+  border: 1px solid #e4e4e7;
+}
+
+/* ── Field ── */
+.qb-field {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 0.55rem 1.2rem;
+  min-width: 0;
+  position: relative;
+}
+
+.qb-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #3f3f46;
+  margin-bottom: 2px;
+}
+
+.qb-select-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.qb-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #18181b;
+  width: 100%;
+  padding-right: 1.4rem;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.qb-select:disabled {
+  color: #52525b;
+  cursor: default;
+}
+
+.qb-select option {
+  color: #18181b;
+  background: #fff;
+}
+
+.qb-chevron {
+  position: absolute;
+  right: 0;
+  width: 0.95rem;
+  height: 0.95rem;
+  color: #a1a1aa;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+/* ── Vertical divider ── */
+.qb-divider {
+  width: 1px;
+  height: 34px;
+  background: #e4e4e7;
+  flex-shrink: 0;
+}
+
+/* ── CTA button ── */
+.qb-cta {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #1d4ed8;
+  color: #fff;
+  border: none;
+  padding: 0 1.8rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  align-self: stretch;
+  white-space: nowrap;
+  transition: background 0.18s ease;
+  flex-shrink: 0;
+}
+
+.qb-cta:hover:not(:disabled) {
+  background: #1e40af;
+}
+
+.qb-cta.disabled,
+.qb-cta:disabled {
+  background: #93c5fd;
+  cursor: not-allowed;
+}
+
+.qb-cta-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .quick-book-bar {
+    flex-direction: column;
+    border-radius: 12px;
+  }
+
+  .qb-field {
+    width: 100%;
+    padding: 0.75rem 1.2rem;
+    border-bottom: 1px solid #e4e4e7;
+  }
+
+  .qb-divider {
+    display: none;
+  }
+
+  .qb-cta {
+    width: 100%;
+    justify-content: center;
+    padding: 0.9rem 1.2rem;
+    border-radius: 0 0 12px 12px;
+  }
+}

@@ -1,0 +1,407 @@
+.bus-info-page {
+  min-height: 100vh;
+  background-color: transparent;
+  color: var(--zinc-900);
+  padding-top: 8rem;
+  padding-bottom: 5rem;
+}
+
+.bus-info-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.bus-info-header {
+  max-width: 48rem;
+  margin-bottom: 4rem;
+}
+
+.bus-info-title {
+  font-size: 4.5rem;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  margin-bottom: 2rem;
+  color: var(--primary);
+  line-height: 1.1;
+}
+
+@media (max-width: 768px) {
+  .bus-info-page {
+    padding-top: 6rem;
+  }
+  .bus-info-title {
+    font-size: 2.25rem;
+  }
+  .bus-info-subtitle {
+    font-size: 1rem;
+  }
+}
+
+.bus-info-subtitle {
+  font-size: 1.25rem;
+  color: var(--zinc-500);
+  line-height: 1.6;
+}
+
+.section-heading {
+  font-size: 1.875rem;
+  font-weight: 900;
+  font-style: italic;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--primary);
+}
+
+.venue-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 6rem;
+}
+
+@media (min-width: 1024px) {
+  .venue-grid {
+    grid-template-columns: 1fr 3fr;
+  }
+}
+
+.venue-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.venue-button {
+  width: 100%;
+  text-align: left;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--zinc-50);
+  color: var(--zinc-500);
+}
+
+.venue-button:hover {
+  background-color: var(--zinc-100);
+}
+
+.venue-button.active {
+  background-color: var(--primary);
+  color: white;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 255, 0.2);
+}
+
+.venue-schedule-card {
+  background-color: var(--zinc-50);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  border: 1px solid var(--zinc-200);
+}
+
+.venue-schedule-hero {
+  position: relative;
+  height: 12rem;
+}
+
+.venue-schedule-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.venue-schedule-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem;
+}
+
+.venue-schedule-title {
+  font-size: 1.875rem;
+  font-weight: 900;
+  color: white;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .section-heading {
+    font-size: 1.5rem;
+  }
+  .venue-schedule-hero {
+    height: 8rem;
+  }
+  .venue-schedule-overlay {
+    padding: 1rem;
+  }
+  .venue-schedule-title {
+    font-size: 1.25rem;
+  }
+  .venue-schedule-content {
+    padding: 1rem;
+  }
+}
+
+.venue-schedule-content {
+  padding: 2rem;
+}
+
+.times-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .times-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.time-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 0.75rem;
+  border: 1px solid var(--zinc-100);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.time-location {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.time-location-text {
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.time-value {
+  font-family: var(--font-mono);
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.main-content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .main-content-grid {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.pickup-section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.pickup-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .pickup-buttons {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .pickup-map-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+.pickup-button {
+  padding: 1rem;
+  border-radius: 1rem;
+  font-weight: 700;
+  font-size: 0.875rem;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid var(--zinc-200);
+  background-color: white;
+  color: var(--zinc-500);
+}
+
+.pickup-button:hover {
+  border-color: var(--primary);
+}
+
+.pickup-button.active {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 255, 0.2);
+}
+
+.pickup-map-card {
+  background-color: var(--zinc-50);
+  border-radius: 1.5rem;
+  overflow: hidden;
+  border: 1px solid var(--zinc-200);
+}
+
+.pickup-map-header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--zinc-200);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pickup-map-name {
+  font-size: 1.25rem;
+  font-weight: 900;
+  font-style: italic;
+  color: var(--primary);
+}
+
+.pickup-map-address {
+  font-size: 0.875rem;
+  color: var(--zinc-500);
+}
+
+.google-maps-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.google-maps-link:hover {
+  text-decoration: underline;
+}
+
+.map-iframe-wrapper {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  background-color: var(--zinc-200);
+}
+
+.rules-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.rule-card {
+  background-color: var(--zinc-50);
+  border-radius: 1rem;
+  border: 1px solid var(--zinc-200);
+  overflow: hidden;
+}
+
+.rule-header {
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.rule-header:hover {
+  background-color: var(--zinc-100);
+}
+
+.rule-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.rule-content {
+  padding: 0 1.5rem 1.5rem;
+  color: var(--zinc-600);
+  border-top: 1px solid var(--zinc-200);
+  padding-top: 1rem;
+}
+
+.help-sidebar {
+  background-color: var(--primary);
+  padding: 2rem;
+  border-radius: 1.5rem;
+  color: white;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 255, 0.2);
+  position: sticky;
+  top: 8rem;
+}
+
+.help-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.help-desc {
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 0.75rem;
+}
+
+.contact-label {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.contact-value {
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+}
+
+.contact-value:hover {
+  text-decoration: underline;
+}
+
+.policy-section {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.policy-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.policy-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+}

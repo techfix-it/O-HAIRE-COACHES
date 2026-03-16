@@ -1,0 +1,369 @@
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.3);
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+}
+
+.dashboard-page {
+  padding: 8rem 2rem 4rem;
+  min-height: 100vh;
+  background: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header Section */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+  padding: 0 0.5rem;
+}
+
+.dashboard-subtitle {
+  font-size: 1.125rem;
+  color: var(--zinc-500);
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+
+.dashboard-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--zinc-900);
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  background: white;
+  border: 1px solid var(--zinc-200);
+  border-radius: 1rem;
+  color: #ef4444;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.logout-btn:hover {
+  background: #fef2f2;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(239, 68, 68, 0.1);
+  border-color: #fecaca;
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1.2fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+/* Card Base */
+.dashboard-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 2rem;
+  padding: 2.5rem;
+  box-shadow: var(--glass-shadow);
+  transition: transform 0.3s ease;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--zinc-900);
+  margin-bottom: 2rem;
+}
+
+.card-title svg {
+  color: var(--primary);
+}
+
+/* Bookings Section */
+.bookings-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.empty-icon {
+  width: 5rem;
+  height: 5rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.2;
+}
+
+.bookings-empty p {
+  color: var(--zinc-500);
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+  max-width: 300px;
+}
+
+.browse-btn {
+  background: var(--primary);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s;
+  box-shadow: 0 4px 14px rgba(0, 0, 255, 0.2);
+}
+
+.browse-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 255, 0.3);
+  filter: brightness(1.1);
+}
+
+/* Profile Section Actions */
+.card-header-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.card-header-actions .card-title {
+  margin-bottom: 0;
+}
+
+.crud-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.action-btn {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  border: 1px solid var(--zinc-200);
+  background: white;
+  color: var(--zinc-500);
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.action-btn:hover {
+  transform: scale(1.05);
+}
+
+.action-btn.edit:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+  background: rgba(0, 0, 255, 0.05);
+}
+
+.action-btn.delete:hover {
+  color: #ef4444;
+  border-color: #ef4444;
+  background: #fef2f2;
+}
+
+.action-btn.cancel:hover {
+  color: var(--zinc-900);
+  background: var(--zinc-100);
+  border-color: var(--zinc-300);
+}
+
+/* Profile Info List */
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.info-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--zinc-400);
+  font-weight: 700;
+}
+
+.info-value {
+  font-size: 1.125rem;
+  color: var(--zinc-800);
+  font-weight: 600;
+}
+
+/* Edit Form */
+.edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.col-span-2 {
+  grid-column: span 2;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dashboard-input {
+  width: 100%;
+  padding: 0.875rem 1.125rem;
+  border-radius: 1rem;
+  border: 1.5px solid var(--zinc-100);
+  background: rgba(255, 255, 255, 0.5);
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--zinc-900);
+  transition: all 0.2s;
+}
+
+.dashboard-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: white;
+  box-shadow: 0 0 0 4px rgba(0, 0, 255, 0.05);
+}
+
+.save-profile-btn {
+  margin-top: 1rem;
+  background: var(--primary);
+  color: white;
+  padding: 1.125rem;
+  border-radius: 1.25rem;
+  font-weight: 800;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 20px rgba(0, 0, 255, 0.2);
+}
+
+.save-profile-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0, 0, 255, 0.3);
+  filter: brightness(1.1);
+}
+
+.save-profile-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Admin Link */
+.admin-control-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  margin-top: 2rem;
+  background: linear-gradient(135deg, var(--zinc-50), white);
+  border: 1px solid var(--zinc-200);
+  border-radius: 1.25rem;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.admin-control-link:hover {
+  border-color: var(--primary);
+  transform: translateX(4px);
+  background: white;
+}
+
+.admin-control-link span {
+  font-weight: 700;
+  color: var(--zinc-800);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard-page {
+    padding: 6rem 1rem 2rem;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .dashboard-title {
+    font-size: 2.75rem;
+  }
+
+  .logout-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .dashboard-card {
+    padding: 1.75rem;
+    border-radius: 1.5rem;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .col-span-2 {
+    grid-column: span 1;
+  }
+}
+
+/* iPhone SE Specific Fixes */
+@media (max-width: 375px) {
+  .dashboard-title {
+    font-size: 2.25rem;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+  }
+}

@@ -1,0 +1,246 @@
+.event-details-page {
+  min-height: 100vh;
+  background-color: transparent;
+  color: var(--zinc-900);
+  padding-top: 6rem;
+  padding-bottom: 3rem;
+}
+
+.event-details-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--zinc-400);
+  text-decoration: none;
+  margin-bottom: 2rem;
+  transition: color 0.2s ease-in-out;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+.back-link:hover {
+  color: var(--primary);
+}
+
+.event-details-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .event-details-grid {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+.event-hero-card {
+  position: relative;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  border: 1px solid var(--zinc-200);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  background-color: var(--zinc-100);
+  max-height: 500px;
+  min-height: 300px; /* Ensure visibility before/while loading */
+}
+
+.event-hero-image {
+  width: 100%;
+  height: 500px; /* Match max-height for stability */
+  object-fit: cover;
+  display: block;
+}
+
+.event-hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent, transparent);
+}
+
+.event-hero-content {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  right: 2rem; /* Ensure padding on right */
+}
+
+.event-hero-title {
+  font-size: 2.25rem; /* Slightly smaller to prevent overflow */
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  margin-bottom: 0.5rem;
+  color: white; /* Changed to white for better contrast with the dark gradient */
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+@media (min-width: 768px) {
+  .event-hero-title {
+    font-size: 3rem;
+  }
+}
+
+.event-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.meta-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.meta-icon {
+  width: 1rem;
+  height: 1rem;
+  color: var(--primary);
+}
+
+.event-description-section {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: var(--zinc-900);
+  border-bottom: 2px solid var(--zinc-100);
+  padding-bottom: 0.5rem;
+}
+
+.description-content {
+  width: 100%;
+}
+
+.booking-sidebar {
+  background-color: var(--zinc-50);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  border: 1px solid var(--zinc-200);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  height: fit-content;
+  position: sticky;
+  top: 6rem;
+}
+
+.sidebar-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.route-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.route-button {
+  width: 100%;
+  text-align: left;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 2px solid var(--zinc-100);
+  background-color: white;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.route-button:hover {
+  border-color: var(--zinc-200);
+}
+
+.route-button.active {
+  background-color: rgba(0, 0, 255, 0.05);
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.route-name {
+  font-weight: 700;
+}
+
+.route-time {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+.route-price {
+  font-size: 1.125rem;
+  font-weight: 900;
+}
+
+.add-to-cart-button {
+  width: 100%;
+  background-color: var(--primary);
+  color: white;
+  padding: 1rem 0;
+  border-radius: 1rem;
+  font-weight: 700;
+  font-size: 1.125rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 255, 0.2);
+}
+
+.add-to-cart-button:disabled {
+  background-color: var(--zinc-200);
+  color: var(--zinc-400);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.add-to-cart-button:not(:disabled):hover {
+  background-color: var(--primary-hover);
+}
+
+.info-box {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--zinc-400);
+  background-color: white;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--zinc-100);
+}
+
+.info-icon {
+  width: 1rem;
+  height: 1rem;
+  color: var(--primary);
+  flex-shrink: 0;
+}
