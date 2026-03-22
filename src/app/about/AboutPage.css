@@ -18,17 +18,21 @@
 
 @media (max-width: 768px) {
   .about-hero {
-    height: 50vh;
-    padding: 6rem 1rem 0; /* Add top padding to account for fixed header */
+    height: auto;
+    min-height: 60vh;
+    padding: 10rem 1rem 4rem;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
   }
   .about-title {
-    font-size: 2.5rem;
+    font-size: 2.25rem;
+    word-break: break-word;
   }
   .about-subtitle {
     font-size: 1rem;
+    line-height: 1.5;
   }
 }
 
@@ -161,9 +165,17 @@
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-  margin-top: 4rem;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 640px) {
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+  }
 }
 
 .stat-item {
@@ -178,11 +190,18 @@
 }
 
 .stat-label {
-  font-size: 0.875rem;
-  color: var(--zinc-500);
+  font-size: 0.8rem;
+  color: var(--zinc-400);
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 0.1em;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 768px) {
+  .stat-number {
+    font-size: 2.75rem;
+  }
 }
 
 .details-image-wrapper {
