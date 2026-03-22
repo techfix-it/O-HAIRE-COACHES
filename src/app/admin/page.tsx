@@ -207,6 +207,7 @@ const AdminEvents = () => {
       price: String(event.price)
     });
     setShowForm(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleClose = () => {
@@ -275,7 +276,12 @@ const AdminEvents = () => {
             </select>
           </div>
           <button 
-            onClick={() => { setEditingId(null); setFormData(defaultForm); setShowForm(!showForm); }}
+            onClick={() => { 
+                setEditingId(null); 
+                setFormData(defaultForm); 
+                setShowForm(!showForm); 
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
             className="admin-button-primary flex items-center gap-2 whitespace-nowrap"
           >
             <Plus className="icon-w-4" /> New Event
@@ -411,13 +417,22 @@ const AdminEvents = () => {
               .sort((a, b) => a.title.localeCompare(b.title))
               .map(event => (
               <tr key={event._id} className="admin-table-tr">
-                <td className="admin-table-td">
-                  <div className="font-bold text-zinc-900">{event.title}</div>
-                  <div className="text-[10px] font-mono text-zinc-400">{format(new Date(event.date), 'MMM dd, yyyy HH:mm')}</div>
+                <td className="admin-table-main">
+                  <div className="flex items-center gap-4">
+                    <img 
+                      src={event.imageUrl || "/placeholder.png"} 
+                      alt="" 
+                      className="admin-venue-thumb" 
+                    />
+                    <div>
+                      <div className="font-bold text-zinc-900 leading-tight">{event.title}</div>
+                      <div className="text-[10px] font-mono text-zinc-400 mt-1">{format(new Date(event.date), 'MMM dd, yyyy HH:mm')}</div>
+                    </div>
+                  </div>
                 </td>
-                <td className="admin-table-td text-zinc-500">{event.venue?.name}</td>
-                <td className="admin-table-td text-zinc-500">€{Number(event.price || 0).toFixed(2)}</td>
-                <td className="admin-table-td text-right flex gap-2 justify-end">
+                <td className="admin-table-detail">{event.venue?.name}</td>
+                <td className="admin-table-detail">€{Number(event.price || 0).toFixed(2)}</td>
+                <td className="admin-table-actions flex gap-2 justify-end">
                   <button
                     onClick={() => openEdit(event)}
                     className="admin-button-secondary"
@@ -457,6 +472,7 @@ const AdminVenues = () => {
     setFormData({ name: v.name, address: v.address || '', city: v.city || '', image: v.image || '' });
     setImagePreview(v.image || null);
     setShowForm(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleClose = () => { 
@@ -507,7 +523,12 @@ const AdminVenues = () => {
     <div>
       <div className="flex items-center justify-between mb-8">
         <h1 className="admin-page-title">MANAGE VENUES</h1>
-        <button onClick={() => { setEditingId(null); setFormData(defaultForm); setShowForm(!showForm); }} className="admin-button-primary flex items-center gap-2">
+        <button onClick={() => { 
+            setEditingId(null); 
+            setFormData(defaultForm); 
+            setShowForm(!showForm); 
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }} className="admin-button-primary flex items-center gap-2">
           <Plus className="icon-w-4" /> New Venue
         </button>
       </div>
@@ -658,6 +679,7 @@ const AdminPickup = () => {
       venue: typeof l.venue === 'object' && l.venue !== null ? l.venue._id : ((l.venue as unknown as string) || '')
     });
     setShowForm(true);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleClose = () => { setShowForm(false); setEditingId(null); setFormData(defaultForm); };
@@ -705,7 +727,12 @@ const AdminPickup = () => {
             </select>
           </div>
           <button 
-            onClick={() => { setEditingId(null); setFormData(defaultForm); setShowForm(!showForm); }} 
+            onClick={() => { 
+                setEditingId(null); 
+                setFormData(defaultForm); 
+                setShowForm(!showForm); 
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }} 
             className="admin-button-primary flex items-center gap-2 whitespace-nowrap"
           >
             <Plus className="icon-w-4" /> New Point

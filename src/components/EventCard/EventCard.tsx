@@ -43,9 +43,6 @@ export const EventCard: React.FC<{ event: Event }> = ({ event }) => (
         alt={event.title}
         className="event-card-image"
       />
-      <div className="event-card-badge">
-        {event.venue_name}
-      </div>
     </div>
     <div className="event-card-content">
       <div className="event-card-date">

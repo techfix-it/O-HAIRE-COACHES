@@ -209,8 +209,63 @@
   background-color: var(--zinc-50);
 }
 
-.admin-table-td {
-  padding: 1rem;
+.admin-table-td, .admin-table-main, .admin-table-detail, .admin-table-actions {
+  padding: 0.5rem 1rem;
+}
+
+/* Mobile responsive table */
+@media (max-width: 768px) {
+  .admin-table-header {
+    display: none;
+  }
+  
+  .admin-table-tr {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1.25rem;
+    gap: 0.75rem;
+    border: 1px solid var(--zinc-100);
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    position: relative;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  }
+  
+  .admin-table-td {
+    padding: 0 !important;
+    border: none !important;
+  }
+  
+  /* Title/Date row 1 */
+  .admin-table-main {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    padding: 0 !important;
+  }
+
+  /* Venue/Price row 2 */
+  .admin-table-detail {
+    flex: 1;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--zinc-500);
+    padding: 0 !important;
+  }
+
+  .admin-table-detail:nth-of-type(3) {
+    font-weight: 700;
+    color: var(--zinc-900);
+  }
+
+  /* Actions aligned right or on same line 2 */
+  .admin-table-actions {
+    width: auto;
+    margin-left: auto;
+    padding: 0 !important;
+  }
 }
 
 .admin-form-card {
