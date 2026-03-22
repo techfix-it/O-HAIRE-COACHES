@@ -23,11 +23,24 @@ export async function PUT(req: NextRequest, { params }: Params) {
     const { id } = await params;
     await connectDB();
     const body = await req.json();
-    const venue = await Venue.findByIdAndUpdate(id, body, { new: true, runValidators: true });
+    console.log(`[API] PUT /venues/${id} body keys:`, Object.keys(body));
+    
+    const venue = await Venue.findByIdAndUpdate(
+      id, 
+      {
+        name: body.name,
+        address: body.address,
+        city: body.city,
+        image: body.image
+      }, 
+      { new: true, runValidators: true }
+    );
+    
     if (!venue) return NextResponse.json({ error: 'Venue não encontrado' }, { status: 404 });
     return NextResponse.json(venue);
-  } catch {
-    return NextResponse.json({ error: 'Dados inválidos' }, { status: 400 });
+  } catch (error: any) {
+    console.error("[API] PUT Venue error:", error);
+    return NextResponse.json({ error: error.message || 'Dados inválidos' }, { status: 400 });
   }
 }
 

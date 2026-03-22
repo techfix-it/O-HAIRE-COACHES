@@ -18,9 +18,18 @@ export async function POST(req: NextRequest) {
   try {
     await connectDB();
     const body = await req.json();
-    const venue = await Venue.create(body);
+    console.log(`[API] POST /venues body keys:`, Object.keys(body));
+    
+    const venue = await Venue.create({
+      name: body.name,
+      address: body.address,
+      city: body.city,
+      image: body.image
+    });
+    
     return NextResponse.json(venue, { status: 201 });
-  } catch {
-    return NextResponse.json({ error: 'Dados inválidos' }, { status: 400 });
+  } catch (error: any) {
+    console.error("[API] POST Venue error:", error);
+    return NextResponse.json({ error: error.message || 'Dados inválidos' }, { status: 400 });
   }
 }

@@ -124,20 +124,42 @@ const PICKUP_LOCATIONS = [
 
 export default function BusInfoPage() {
   const [settings, setSettings] = useState<any>(null);
-  const [selectedVenue, setSelectedVenue] = useState(VENUE_TIMES[0]);
+  const [venues, setVenues] = useState<any[]>(VENUE_TIMES);
+  const [selectedVenue, setSelectedVenue] = useState<any>(VENUE_TIMES[0]);
   const [selectedPickup, setSelectedPickup] = useState(PICKUP_LOCATIONS[0]);
   const [expanded, setExpanded] = useState<number | null>(null);
 
   useEffect(() => {
+    // Fetch site settings
     api.get('/site-settings/bus_info')
       .then(res => setSettings(res.data))
       .catch(err => {
         console.error("Error fetching bus info settings:", err);
         setSettings({
           title: "PICKUP POINTS & TIMES",
-          subtitle: "Loading Fallback..."
+          subtitle: "Serving Ireland's concert fans for over two decades with reliability and passion."
         });
       });
+
+    // Fetch live venues to get real images
+    api.get('/venues')
+      .then(res => {
+        const dbVenues = res.data;
+        if (dbVenues && dbVenues.length > 0) {
+          const syncedVenues = VENUE_TIMES.map(v => {
+            const match = dbVenues.find((db: any) => 
+               db.name.toLowerCase().replace(/\s+/g, '') === v.name.toLowerCase().replace(/\s+/g, '')
+            );
+            if (match && match.image) {
+              return { ...v, image: match.image };
+            }
+            return v;
+          });
+          setVenues(syncedVenues);
+          setSelectedVenue(prev => syncedVenues.find(v => v.name === prev.name) || syncedVenues[0]);
+        }
+      })
+      .catch(err => console.error("Error fetching venues for BusInfo:", err));
   }, []);
 
   if (!settings) return <div className="loading-screen">Loading...</div>;
@@ -189,7 +211,7 @@ export default function BusInfoPage() {
             )}
             <div className="venue-grid">
               <div className="venue-list">
-                {VENUE_TIMES.map((venue) => (
+                {venues.map((venue) => (
                   <button
                     key={venue.name}
                     onClick={() => setSelectedVenue(venue)}

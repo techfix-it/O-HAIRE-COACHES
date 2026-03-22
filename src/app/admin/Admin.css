@@ -355,6 +355,16 @@
   border: 1px solid var(--zinc-200);
 }
 
+.admin-venue-thumb {
+  width: 6rem;
+  height: 3.5rem;
+  object-fit: cover;
+  border-radius: 0.375rem;
+  border: 1px solid var(--zinc-200);
+  background-color: var(--zinc-50);
+  flex-shrink: 0;
+}
+
 .admin-text-tiny-bold {
   font-size: 0.7rem;
   font-weight: 700;

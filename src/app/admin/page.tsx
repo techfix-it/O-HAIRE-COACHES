@@ -51,6 +51,7 @@ interface Venue {
   name: string;
   address: string;
   city: string;
+  image?: string;
 }
 
 interface PickupLocation {
@@ -444,26 +445,56 @@ const AdminVenues = () => {
   const [venues, setVenues] = useState<Venue[]>([]);
   const [showForm, setShowForm] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
-  const defaultForm = { name: '', address: '', city: '' };
+  const defaultForm = { name: '', address: '', city: '', image: '' };
   const [formData, setFormData] = useState(defaultForm);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
 
   const fetchData = () => { api.get('/venues').then(res => setVenues(res.data)); };
   useEffect(() => { fetchData(); }, []);
 
   const openEdit = (v: Venue) => {
     setEditingId(v._id);
-    setFormData({ name: v.name, address: v.address, city: v.city });
+    setFormData({ name: v.name, address: v.address || '', city: v.city || '', image: v.image || '' });
+    setImagePreview(v.image || null);
     setShowForm(true);
   };
 
-  const handleClose = () => { setShowForm(false); setEditingId(null); setFormData(defaultForm); };
+  const handleClose = () => { 
+    setShowForm(false); 
+    setEditingId(null); 
+    setFormData(defaultForm); 
+    setImagePreview(null);
+  };
+
+  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64 = reader.result as string;
+        setFormData({ ...formData, image: base64 });
+        setImagePreview(base64);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("[Admin] Submitting venue formData:", {...formData, image: formData.image?.substring(0, 30) + "..."});
+    
     const req = editingId
       ? api.put(`/venues/${editingId}`, formData)
       : api.post('/venues', formData);
-    req.then(() => { handleClose(); fetchData(); });
+    
+    req.then((res) => { 
+      console.log("[Admin] Venue submit success:", res.data);
+      handleClose(); 
+      fetchData(); 
+    }).catch(err => {
+      console.error("[Admin] Venue submit error:", err);
+      alert("Erro ao salvar venue: " + (err.response?.data?.error || err.message));
+    });
   };
 
   const handleDelete = (id: string) => {
@@ -496,6 +527,65 @@ const AdminVenues = () => {
               <label className="admin-form-label">Address</label>
               <input required className="admin-form-input" value={formData.address} onChange={e => setFormData({...formData, address: e.target.value})} />
             </div>
+
+            <div className="admin-form-group md:col-span-3">
+              <label className="admin-form-label uppercase tracking-widest text-[10px] font-bold text-zinc-400 mb-3 flex items-center gap-2">
+                <ImageIcon className="w-4 h-4" /> FEATURE IMAGE
+              </label>
+              <div className="admin-image-upload-zone">
+                <div className="w-full md:w-48 aspect-video rounded-xl overflow-hidden border border-zinc-200 bg-white flex-shrink-0 shadow-sm relative group">
+                  {imagePreview ? (
+                    <>
+                      <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <ImageIcon className="w-6 h-6 text-white" />
+                      </div>
+                    </>
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-zinc-300">
+                      <ImageIcon className="w-8 h-8 opacity-20" />
+                    </div>
+                  )}
+                </div>
+                <div className="flex-1 space-y-4 w-full">
+                  <div className="flex flex-col sm:flex-row gap-3 items-center">
+                    <div className="relative">
+                      <input 
+                        type="file"
+                        accept="image/*"
+                        onChange={handleImageUpload}
+                        className="hidden"
+                        id="venue-image-upload"
+                      />
+                      <label 
+                        htmlFor="venue-image-upload"
+                        className="admin-button-secondary flex items-center gap-2 cursor-pointer h-10 px-4 text-xs"
+                      >
+                        <Upload className="w-3.5 h-3.5" /> Escolher ficheiro
+                      </label>
+                    </div>
+                    <span className="text-[10px] text-zinc-400 italic">
+                      {imagePreview ? 'Imagem selecionada' : 'Nenhum ficheiro selecionado'}
+                    </span>
+                  </div>
+                  <div className="space-y-1.5">
+                    <input 
+                      className="admin-form-input h-10 font-mono text-[11px] bg-white"
+                      placeholder="Carregue um ficheiro ou cole o URL..."
+                      value={formData.image}
+                      onChange={e => {
+                        setFormData({...formData, image: e.target.value});
+                        setImagePreview(e.target.value);
+                      }}
+                    />
+                  </div>
+                  <p className="text-[10px] text-zinc-400">
+                    Carregue um ficheiro ou cole o URL. Formato horizontal recomendado (ex: 1920x1080px).
+                  </p>
+                </div>
+              </div>
+            </div>
+
             <div className="admin-form-actions md:col-span-3">
               <button type="button" onClick={handleClose} className="admin-button-secondary">Cancel</button>
               <button type="submit" className="admin-button-primary">{editingId ? 'Update Venue' : 'Save Venue'}</button>
@@ -516,7 +606,18 @@ const AdminVenues = () => {
           <tbody>
               {venues.map(v => (
               <tr key={v._id} className="admin-table-tr">
-                <td className="admin-table-td font-bold text-zinc-900">{v.name}</td>
+                <td className="admin-table-td">
+                  <div className="flex items-center gap-4">
+                    {v.image ? (
+                        <img src={v.image} alt="" className="admin-venue-thumb" />
+                      ) : (
+                        <div className="admin-venue-thumb flex items-center justify-center text-zinc-300">
+                          <ImageIcon className="w-5 h-5 opacity-40" />
+                        </div>
+                      )}
+                    <span className="font-bold text-zinc-900">{v.name}</span>
+                  </div>
+                </td>
                 <td className="admin-table-td text-zinc-500">{v.city}</td>
                 <td className="admin-table-td text-right flex gap-2 justify-end">
                   <button onClick={() => openEdit(v)} className="admin-button-secondary" title="Edit"><Pencil className="icon-w-4" /></button>
