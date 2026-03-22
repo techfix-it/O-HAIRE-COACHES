@@ -3,8 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { Clock, MapPin, Info, ChevronDown, Phone, User, ExternalLink } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Header } from '../../components/Header';
-import { Footer } from '../../components/Footer';
+import { Header } from '../../components/Header/Header';
+import { Footer } from '../../components/Footer/Footer';
 import api from '../../lib/api';
 import './BusInfoPage.css';
 

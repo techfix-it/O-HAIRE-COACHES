@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { Search, SlidersHorizontal } from 'lucide-react';
-import { EventCard } from '../../components/EventCard';
-import { Header } from '../../components/Header';
-import { Footer } from '../../components/Footer';
+import { EventCard } from '../../components/EventCard/EventCard';
+import { Header } from '../../components/Header/Header';
+import { Footer } from '../../components/Footer/Footer';
 import { QuickBook } from '../../components/QuickBook/QuickBook';
 import api from '../../lib/api';
 import './ConcertsPage.css';

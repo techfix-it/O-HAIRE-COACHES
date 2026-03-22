@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { AuthProvider } from "@/contexts/AuthContext";
-import { GlobalBackground } from "@/components/GlobalBackground";
+import { GlobalBackground } from "@/components/styles/GlobalBackground";
 import "./globals.css";
 
 export const metadata: Metadata = {

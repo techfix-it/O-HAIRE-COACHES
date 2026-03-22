@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { ShoppingBag, Trash2, ArrowRight, Bus, Calendar, CheckCircle, Plus, Minus } from 'lucide-react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'motion/react';
-import { Header } from '../../components/Header';
-import { Footer } from '../../components/Footer';
+import { Header } from '../../components/Header/Header';
+import { Footer } from '../../components/Footer/Footer';
 import { useAuth } from '../../contexts/AuthContext';
 import './CartPage.css';
 

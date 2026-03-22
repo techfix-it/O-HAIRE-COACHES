@@ -1,16 +1,24 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, MessageCircle } from 'lucide-react';
-import { Header } from '../../components/Header';
-import { Footer } from '../../components/Footer';
+import React, { useState, useEffect } from 'react';
+import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Header } from '../../components/Header/Header';
+import { Footer } from '../../components/Footer/Footer';
+import { PhoneInput } from '../../components/PhoneInput/PhoneInput';
 import './ContactPage.css';
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [settings, setSettings] = useState<any>(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    subject: '',
+    message: ''
+  });
 
-  React.useEffect(() => {
+  useEffect(() => {
     import('../../lib/api').then(api => {
       api.default.get('/site-settings/contact')
         .then(res => setSettings(res.data))
@@ -23,6 +31,11 @@ export default function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
+    // Here would be the actual API call
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   return (
@@ -39,7 +52,7 @@ export default function ContactPage() {
               />
               
               <div className="contact-methods">
-                <div className="method-item">
+                <a href={`tel:${s.phone || '+3530879004876'}`} className="method-item">
                   <div className="method-icon-wrapper">
                     <Phone className="method-icon" />
                   </div>
@@ -47,9 +60,9 @@ export default function ContactPage() {
                     <div className="method-label">Call Us</div>
                     <div className="method-value">{s.phone || '+353 087 900 4876'}</div>
                   </div>
-                </div>
+                </a>
                 
-                <div className="method-item">
+                <a href={`mailto:${s.email || 'info@ohaireconcertcoaches.ie'}`} className="method-item">
                   <div className="method-icon-wrapper">
                     <Mail className="method-icon" />
                   </div>
@@ -57,7 +70,7 @@ export default function ContactPage() {
                     <div className="method-label">Email Us</div>
                     <div className="method-value">{s.email || 'info@ohaireconcertcoaches.ie'}</div>
                   </div>
-                </div>
+                </a>
                 
                 <div className="method-item">
                   <div className="method-icon-wrapper">
@@ -88,6 +101,7 @@ export default function ContactPage() {
             </div>
 
             <div className="contact-form-section">
+              <h2 className="form-heading">Send us a Message</h2>
               {submitted ? (
                 <div className="success-message">
                   <div className="success-icon-bg">
@@ -99,29 +113,66 @@ export default function ContactPage() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="contact-form">
-                  <div className="form-group-grid">
-                    <div className="form-group">
-                      <label>First Name</label>
-                      <input type="text" placeholder="John" required />
-                    </div>
-                    <div className="form-group">
-                      <label>Last Name</label>
-                      <input type="text" placeholder="Doe" required />
-                    </div>
+                  <div className="form-group">
+                    <label>Name</label>
+                    <input 
+                      type="text" 
+                      name="name"
+                      placeholder="John Doe" 
+                      required 
+                      value={formData.name}
+                      onChange={handleChange}
+                    />
                   </div>
                   
                   <div className="form-group">
-                    <label>Email Address</label>
-                    <input type="email" placeholder="john@example.com" required />
+                    <label>Email</label>
+                    <input 
+                      type="email" 
+                      name="email"
+                      placeholder="john@example.com" 
+                      required 
+                      value={formData.email}
+                      onChange={handleChange}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label className="label-with-optional">
+                      Phone <span className="optional-tag">— optional</span>
+                    </label>
+                    <PhoneInput 
+                      value={formData.phone}
+                      onChange={(val) => setFormData(p => ({ ...p, phone: val }))}
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label>Subject</label>
+                    <input 
+                      type="text" 
+                      name="subject"
+                      placeholder="Project Inquiry" 
+                      required 
+                      value={formData.subject}
+                      onChange={handleChange}
+                    />
                   </div>
                   
                   <div className="form-group">
                     <label>Message</label>
-                    <textarea placeholder="How can we help you?" rows={5} required></textarea>
+                    <textarea 
+                      name="message"
+                      placeholder="Tell us about your project..." 
+                      rows={5} 
+                      required
+                      value={formData.message}
+                      onChange={handleChange}
+                    ></textarea>
                   </div>
                   
-                  <button type="submit" className="submit-button">
-                    Send Message <Send className="icon-w-4" />
+                  <button type="submit" className="submit-button-large">
+                    Send Message
                   </button>
                 </form>
               )}

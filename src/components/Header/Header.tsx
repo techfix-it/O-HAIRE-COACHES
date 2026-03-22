@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { ShoppingCart, Menu, X, Bus, LogOut, User } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
-import api from '../lib/api';
+import { useAuth } from '../../contexts/AuthContext';
+import api from '../../lib/api';
 import './Header.css';
 
 interface HeaderProps {

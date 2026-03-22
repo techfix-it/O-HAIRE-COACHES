@@ -1,0 +1,137 @@
+.phone-input-wrapper *, .phone-input-wrapper *:before, .phone-input-wrapper *:after {
+  box-sizing: border-box;
+}
+.phone-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background-color: #f8fafc;
+  overflow: visible;
+  transition: all 0.2s;
+  height: 56px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.phone-input-wrapper:focus-within {
+  border-color: #0366d6;
+  background-color: white;
+  box-shadow: 0 0 0 4px rgba(3, 102, 214, 0.05);
+}
+
+.phone-country-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 1rem;
+  height: 100%;
+  background: transparent;
+  border: none;
+  border-right: 1px solid #e2e8f0;
+  cursor: pointer;
+  white-space: nowrap;
+  min-width: 90px;
+}
+
+.phone-flag {
+  width: 20px;
+  height: 14px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.phone-dial {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.phone-caret {
+  font-size: 0.75rem;
+  color: #666;
+  opacity: 0.8;
+}
+
+.phone-number-input {
+  flex: 1;
+  padding: 0 1.25rem;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  color: #1a1a1a;
+  height: 100%;
+}
+
+.phone-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 500;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  width: 280px;
+  overflow: hidden;
+  animation: slideIn 0.2s ease-out;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.phone-search-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8fafc;
+  font-family: inherit;
+  font-size: 0.875rem;
+  outline: none;
+}
+
+.phone-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0;
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.phone-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s;
+}
+
+.phone-option:hover {
+  background: #f1f5f9;
+}
+
+.phone-option.active {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.phone-option-name {
+  flex: 1;
+  font-size: 0.875rem;
+}
+
+.phone-option-dial {
+  font-size: 0.875rem;
+  opacity: 0.6;
+}

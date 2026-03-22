@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import { Bus, Shield, Clock, MapPin, Users, Heart, Loader2 } from 'lucide-react';
-import { Header } from '../../components/Header';
-import { Footer } from '../../components/Footer';
+import { Header } from '../../components/Header/Header';
+import { Footer } from '../../components/Footer/Footer';
 import api from '../../lib/api';
 import './AboutPage.css';
 

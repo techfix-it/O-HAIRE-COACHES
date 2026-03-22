@@ -88,6 +88,7 @@ interface Event {
 // ----------------------------------------------------
 const AdminLayout = ({ children, activeTab, setActiveTab }: { children: React.ReactNode, activeTab: string, setActiveTab: (tab: string) => void }) => {
   const router = useRouter();
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   const handleLogout = () => {
     api.post('/auth/logout').then(() => {
@@ -95,23 +96,46 @@ const AdminLayout = ({ children, activeTab, setActiveTab }: { children: React.Re
     });
   };
 
+  const handleNav = (tab: string) => {
+    setActiveTab(tab);
+    setIsDrawerOpen(false);
+  };
+
   return (
     <div className="admin-layout">
-      <aside className="admin-sidebar">
+      {/* Mobile top bar */}
+      <header className="admin-mobile-topbar">
+        <button
+          className="admin-hamburger"
+          onClick={() => setIsDrawerOpen(true)}
+          aria-label="Open menu"
+        >
+          <span /><span /><span />
+        </button>
+        <span className="admin-mobile-title">O&apos;HAIRE <em>ADMIN</em></span>
+      </header>
+
+      {/* Overlay */}
+      {isDrawerOpen && (
+        <div className="admin-drawer-overlay" onClick={() => setIsDrawerOpen(false)} />
+      )}
+
+      <aside className={`admin-sidebar ${isDrawerOpen ? 'drawer-open' : ''}`}>
+        <button className="admin-drawer-close" onClick={() => setIsDrawerOpen(false)} aria-label="Close menu">✕</button>
         <Link href="/" className="admin-logo">
-          O'HAIRE <span className="italic">ADMIN</span>
+          O&apos;HAIRE <span className="italic">ADMIN</span>
         </Link>
         <nav className="admin-nav">
           <div className="admin-nav-section">SHOP MANAGEMENT</div>
-          <button onClick={() => setActiveTab('dashboard')} className={`admin-nav-link ${activeTab === 'dashboard' ? 'active' : ''}`}><LayoutDashboard className="icon-w-5" /> Dashboard</button>
-          <button onClick={() => setActiveTab('events')} className={`admin-nav-link ${activeTab === 'events' ? 'active' : ''}`}><Ticket className="icon-w-5" /> Events</button>
-          <button onClick={() => setActiveTab('venues')} className={`admin-nav-link ${activeTab === 'venues' ? 'active' : ''}`}><MapPin className="icon-w-5" /> Venues</button>
-          <button onClick={() => setActiveTab('pickup')} className={`admin-nav-link ${activeTab === 'pickup' ? 'active' : ''}`}><Bus className="icon-w-5" /> Pickup Points</button>
+          <button onClick={() => handleNav('dashboard')} className={`admin-nav-link ${activeTab === 'dashboard' ? 'active' : ''}`}><LayoutDashboard className="icon-w-5" /> Dashboard</button>
+          <button onClick={() => handleNav('events')} className={`admin-nav-link ${activeTab === 'events' ? 'active' : ''}`}><Ticket className="icon-w-5" /> Events</button>
+          <button onClick={() => handleNav('venues')} className={`admin-nav-link ${activeTab === 'venues' ? 'active' : ''}`}><MapPin className="icon-w-5" /> Venues</button>
+          <button onClick={() => handleNav('pickup')} className={`admin-nav-link ${activeTab === 'pickup' ? 'active' : ''}`}><Bus className="icon-w-5" /> Pickup Points</button>
           
           <div className="admin-nav-section mt-6">SITE MANAGEMENT</div>
-          <button onClick={() => setActiveTab('site')} className={`admin-nav-link ${activeTab === 'site' ? 'active' : ''}`}><Globe className="icon-w-5" /> Pages</button>
-          <button onClick={() => setActiveTab('components')} className={`admin-nav-link ${activeTab === 'components' ? 'active' : ''}`}><Layout className="icon-w-5" /> Components</button>
-          <button onClick={() => setActiveTab('payments')} className={`admin-nav-link ${activeTab === 'payments' ? 'active' : ''}`}><CreditCard className="icon-w-5" /> Payments</button>
+          <button onClick={() => handleNav('site')} className={`admin-nav-link ${activeTab === 'site' ? 'active' : ''}`}><Globe className="icon-w-5" /> Pages</button>
+          <button onClick={() => handleNav('components')} className={`admin-nav-link ${activeTab === 'components' ? 'active' : ''}`}><Layout className="icon-w-5" /> Components</button>
+          <button onClick={() => handleNav('payments')} className={`admin-nav-link ${activeTab === 'payments' ? 'active' : ''}`}><CreditCard className="icon-w-5" /> Payments</button>
 
           <div className="mt-8 pt-8 border-t border-zinc-200">
             <button onClick={handleLogout} className="admin-nav-link text-red-500 hover:bg-red-50 hover:text-red-600 w-full text-left">
@@ -126,6 +150,7 @@ const AdminLayout = ({ children, activeTab, setActiveTab }: { children: React.Re
     </div>
   );
 };
+
 
 // ----------------------------------------------------
 // Sub-Components

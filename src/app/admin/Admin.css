@@ -529,3 +529,199 @@
   background-color: var(--zinc-100);
   margin: 2rem 0;
 }
+
+/* ============================================
+   MOBILE RESPONSIVE — Drawer & Layout
+   Target: iPhone SE (375px) and up to 768px
+   ============================================ */
+
+/* Mobile top bar — hidden on desktop */
+.admin-mobile-topbar {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3.5rem;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--zinc-200);
+  align-items: center;
+  padding: 0 1rem;
+  gap: 1rem;
+  z-index: 100;
+}
+
+.admin-mobile-title {
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--primary);
+}
+
+/* Hamburger button */
+.admin-hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 2.25rem;
+  height: 2.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  flex-shrink: 0;
+}
+
+.admin-hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--zinc-800);
+  border-radius: 2px;
+  transition: transform 0.2s ease;
+}
+
+/* Drawer close button — hidden on desktop */
+.admin-drawer-close {
+  display: none;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: var(--zinc-500);
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.25rem;
+}
+
+/* Overlay backdrop */
+.admin-drawer-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+  z-index: 149;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Mobile breakpoint (≤ 768px) ── */
+@media (max-width: 768px) {
+  /* Show mobile top bar */
+  .admin-mobile-topbar {
+    display: flex;
+  }
+
+  /* Show overlay when active */
+  .admin-drawer-overlay {
+    display: block;
+  }
+
+  /* Show the close button inside sidebar */
+  .admin-drawer-close {
+    display: block;
+  }
+
+  /* Sidebar becomes a hidden off-canvas drawer */
+  .admin-layout {
+    flex-direction: column;
+    padding-top: 3.5rem; /* clear the fixed topbar */
+  }
+
+  .admin-sidebar {
+    position: fixed;
+    left: -17rem; /* hide off-screen */
+    top: 0;
+    bottom: 0;
+    width: 16rem;
+    z-index: 150;
+    overflow-y: auto;
+    transition: left 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: none;
+    padding-top: 3rem; /* space for the close ✕ button */
+  }
+
+  .admin-sidebar.drawer-open {
+    left: 0;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Main content fills full viewport width */
+  .admin-main {
+    padding: 1.25rem 1rem;
+    min-width: 0;
+    width: 100%;
+  }
+
+  /* Page titles scale down */
+  .admin-page-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  /* Tab pills scroll horizontally */
+  .admin-tabs {
+    overflow-x: auto;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .admin-tab {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
+
+  /* Tables scroll horizontally */
+  .admin-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Forms go single column */
+  .admin-form {
+    grid-template-columns: 1fr !important;
+  }
+
+  .admin-form-card {
+    padding: 1.25rem;
+  }
+
+  /* Stats grid: 1 col on mobile */
+  .stats-grid,
+  .admin-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Section cards full width */
+  .admin-section-card {
+    grid-column: span 1;
+    padding: 1.25rem;
+  }
+
+  /* Form actions wrap on very small screens */
+  .admin-form-actions {
+    flex-wrap: wrap;
+    justify-content: stretch;
+  }
+
+  .admin-form-actions button,
+  .admin-form-actions .admin-button-primary,
+  .admin-form-actions .admin-button-secondary {
+    flex: 1;
+    min-width: 120px;
+  }
+}
+

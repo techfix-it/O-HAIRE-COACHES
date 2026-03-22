@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Bus, Facebook, Twitter, Instagram, Mail, Phone, MapPin } from 'lucide-react';
-import api from '../lib/api';
+import api from '../../lib/api';
 import './Footer.css';
 
 export const Footer: React.FC = () => {

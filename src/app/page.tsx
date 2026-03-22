@@ -5,9 +5,9 @@ import Link from 'next/link';
 import { Calendar, MapPin, ChevronRight } from 'lucide-react';
 import { format } from 'date-fns';
 import { motion } from 'motion/react';
-import { EventCard } from '../components/EventCard';
-import { Header } from '../components/Header';
-import { Footer } from '../components/Footer';
+import { EventCard } from '../components/EventCard/EventCard';
+import { Header } from '../components/Header/Header';
+import { Footer } from '../components/Footer/Footer';
 import api from '../lib/api';
 import './HomePage.css';
 

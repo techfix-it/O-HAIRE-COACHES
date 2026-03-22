@@ -22,9 +22,9 @@ import {
 } from 'lucide-react';
 import { motion } from 'motion/react';
 import api from '../../../lib/api';
-import { Header } from '../../../components/Header';
-import { Footer } from '../../../components/Footer';
-import { GlobalBackground } from '../../../components/GlobalBackground';
+import { Header } from '../../../components/Header/Header';
+import { Footer } from '../../../components/Footer/Footer';
+import { GlobalBackground } from '../../../components/styles/GlobalBackground';
 import './DashboardPage.css';
 
 export default function DashboardPage() {
