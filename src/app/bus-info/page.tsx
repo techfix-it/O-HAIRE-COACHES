@@ -177,13 +177,13 @@ export default function BusInfoPage() {
           </div>
 
           {/* Venue Departure Times Section */}
-          <div className="mb-24">
+          <div className="section-spacer">
             <h2 className="section-heading">
-              <Clock className="icon-w-8" /> VENUE DEPARTURE TIMES
+              <Clock className="icon-xl" /> VENUE DEPARTURE TIMES
             </h2>
             {settings.bus_venue_departure && (
               <div 
-                className="rich-text-content mb-8 p-6 bg-white rounded-2xl border border-zinc-100 shadow-sm text-zinc-600"
+                className="rich-text-content info-box"
                 dangerouslySetInnerHTML={{ __html: settings.bus_venue_departure }} 
               />
             )}
@@ -196,11 +196,11 @@ export default function BusInfoPage() {
                     className={`venue-button ${selectedVenue.name === venue.name ? 'active' : ''}`}
                   >
                     {venue.name}
-                    {selectedVenue.name === venue.name && <ChevronDown className="-rotate-90 icon-w-4" />}
+                    {selectedVenue.name === venue.name && <ChevronDown className="icon-sm rotate-90-icon" />}
                   </button>
                 ))}
               </div>
-              <div className="lg:col-span-3">
+              <div className="venue-schedule-wrapper">
                 <motion.div 
                   key={selectedVenue.name}
                   initial={{ opacity: 0, x: 20 }}
@@ -223,7 +223,7 @@ export default function BusInfoPage() {
                       {selectedVenue.times.map((item, i) => (
                         <div key={i} className="time-item">
                           <div className="time-location">
-                            <MapPin className="icon-w-4 text-primary" />
+                            <MapPin className="icon-sm text-primary-theme" />
                             <span className="time-location-text">{item.location.split('(')[0]}</span>
                           </div>
                           <span className="time-value">{item.time}</span>
@@ -241,15 +241,15 @@ export default function BusInfoPage() {
               {/* Pickup Locations & Maps Section */}
               <div>
                 <h2 className="section-heading">
-                  <MapPin className="icon-w-8" /> PICKUP LOCATIONS & MAPS
+                  <MapPin className="icon-xl" /> PICKUP LOCATIONS & MAPS
                 </h2>
                 {settings.bus_pickup_locations && (
                   <div 
-                    className="rich-text-content mb-8 p-6 bg-white rounded-2xl border border-zinc-100 shadow-sm text-zinc-600"
+                    className="rich-text-content info-box"
                     dangerouslySetInnerHTML={{ __html: settings.bus_pickup_locations }} 
                   />
                 )}
-                <div className="space-y-6">
+                <div className="vertical-stack-lg">
                   <div className="pickup-buttons">
                     {PICKUP_LOCATIONS.map((loc) => (
                       <button
@@ -279,7 +279,7 @@ export default function BusInfoPage() {
                         rel="noopener noreferrer"
                         className="google-maps-link"
                       >
-                        Open in Google Maps <ExternalLink className="icon-w-3" />
+                        Open in Google Maps <ExternalLink className="icon-xxs" />
                       </a>
                     </div>
                     <div className="map-iframe-wrapper">
@@ -300,16 +300,16 @@ export default function BusInfoPage() {
 
               {/* Travel Rules Section */}
               <div className="rules-section">
-                <h2 className="section-heading" style={{ color: 'var(--zinc-900)', fontStyle: 'normal' }}>
-                  <Info className="text-primary icon-w-6" /> Travel Rules & Details
+                <h2 className="section-heading">
+                  <Info className="text-primary-theme icon-lg" /> Travel Rules & Details
                 </h2>
                 {settings.bus_travel_rules && (
                   <div 
-                    className="rich-text-content mb-8 p-6 bg-white rounded-2xl border border-zinc-100 shadow-sm text-zinc-600"
+                    className="rich-text-content info-box"
                     dangerouslySetInnerHTML={{ __html: settings.bus_travel_rules }} 
                   />
                 )}
-                <div className="space-y-4">
+                <div className="vertical-stack-md">
                   {rules.map((rule, idx) => (
                     <div key={idx} className="rule-card">
                       <button 
@@ -317,7 +317,7 @@ export default function BusInfoPage() {
                         className="rule-header"
                       >
                         <span className="rule-title">{rule.title}</span>
-                        <ChevronDown className={`icon-w-5 transition-transform ${expanded === idx ? 'rotate-180' : ''}`} />
+                        <ChevronDown className={`icon-md transition-transform ${expanded === idx ? 'rotate-180' : ''}`} />
                       </button>
                       <AnimatePresence>
                         {expanded === idx && (
@@ -340,7 +340,7 @@ export default function BusInfoPage() {
             <div>
               <div className="help-sidebar">
                 <h3 className="help-title">
-                  <Phone className="icon-w-6" /> Need Help?
+                  <Phone className="icon-lg" /> Need Help?
                 </h3>
                 {settings.bus_help_text ? (
                   <div 
@@ -350,9 +350,9 @@ export default function BusInfoPage() {
                 ) : (
                   <p className="help-desc">Our team is available on concert nights to assist with any travel issues.</p>
                 )}
-                <div className="space-y-4">
+                <div className="vertical-stack-md">
                     <div className="contact-card">
-                      <User className="icon-w-5" />
+                      <User className="icon-md" />
                       <div>
                         <div className="contact-label">Anthony</div>
                         <a href="tel:+353879004876" className="contact-value">+353 (0) 87 900 4876</a>
