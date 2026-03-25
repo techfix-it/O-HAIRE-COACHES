@@ -282,9 +282,22 @@ const AdminEvents = () => {
                 setShowForm(!showForm); 
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="admin-button-primary flex items-center gap-2 whitespace-nowrap"
+            className="admin-button-primary flex items-center gap-2 whitespace-nowrap admin-hide-mobile"
           >
             <Plus className="icon-w-4" /> New Event
+          </button>
+
+          <button 
+            onClick={() => { 
+                setEditingId(null); 
+                setFormData(defaultForm); 
+                setShowForm(!showForm); 
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="admin-fab"
+            aria-label="New Event"
+          >
+            <Plus className="admin-fab-icon" />
           </button>
         </div>
       </div>
@@ -521,15 +534,24 @@ const AdminVenues = () => {
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
         <h1 className="admin-page-title">MANAGE VENUES</h1>
         <button onClick={() => { 
             setEditingId(null); 
             setFormData(defaultForm); 
             setShowForm(!showForm); 
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }} className="admin-button-primary flex items-center gap-2">
+        }} className="admin-button-primary flex items-center gap-2 whitespace-nowrap admin-hide-mobile">
           <Plus className="icon-w-4" /> New Venue
+        </button>
+
+        <button onClick={() => { 
+            setEditingId(null); 
+            setFormData(defaultForm); 
+            setShowForm(!showForm); 
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }} className="admin-fab" aria-label="New Venue">
+          <Plus className="admin-fab-icon" />
         </button>
       </div>
 
@@ -707,7 +729,7 @@ const AdminPickup = () => {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
             <input 
               type="text"
-              placeholder="Filter by Location Name..."
+              placeholder="Filter by Name..."
               className="admin-form-input pl-10 h-10"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -733,9 +755,22 @@ const AdminPickup = () => {
                 setShowForm(!showForm); 
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }} 
-            className="admin-button-primary flex items-center gap-2 whitespace-nowrap"
+            className="admin-button-primary flex items-center gap-2 whitespace-nowrap admin-hide-mobile"
           >
             <Plus className="icon-w-4" /> New Point
+          </button>
+
+          <button 
+            onClick={() => { 
+                setEditingId(null); 
+                setFormData(defaultForm); 
+                setShowForm(!showForm); 
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }} 
+            className="admin-fab"
+            aria-label="New Point"
+          >
+            <Plus className="admin-fab-icon" />
           </button>
         </div>
       </div>
